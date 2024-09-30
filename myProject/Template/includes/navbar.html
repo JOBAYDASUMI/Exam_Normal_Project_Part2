@@ -1,0 +1,21 @@
+<ul>
+  <li><a href="{% url 'jobFeedPage' %}">JobFeed Page</a></li>
+  
+
+  
+  {% if request.user.user_type == 'recruiter' %}
+    
+  
+    
+  <li><a href="{% url 'addJobPage' %}">AddJob Page</a></li>
+
+  {% elif request.user.user_type == 'jobseeker' %}
+  <li><a href="#contact">Contact</a></li>
+
+  {% endif %}
+
+  <li><a>{{request.user.user_type}}</a></li>
+
+  <li style="float:right"><a class="active" href="{% url 'logoutPage' %}">Logout Page</a></li>
+  <li style="float:right"><a class="active" href="{% url 'profilePage' %}">Profile:{{request.user.user_type}}</a></li>
+</ul>

@@ -1,0 +1,59 @@
+{% extends 'common/basePage.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Feed</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Optional custom styles -->
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Search Bar -->
+        <div class="row mb-4">
+            <div class="col text-center">
+                <input type="text" id="job-search" class="form-control w-50 d-inline" placeholder="Search for jobs...">
+                <button id="search-btn" class="btn btn-success ml-2">Search</button>
+            </div>
+        </div>
+
+        <!-- Job Listings -->
+        <div class="row">
+            {% for job in Job %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ job.job_title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Company: {{ job.company_name }}</h6>
+                        <p class="card-text">Location: {{ job.location }}</p>
+                        <p class="card-text">Salary: {{ job.salary }}</p>
+                        <p class="card-text">Description: {{ job.description }}</p>
+                        <p class="card-text">Employee Type: {{ job.employee_type }}</p>
+                        <p class="card-text">Posted Date: {{ job.posted_date }}</p>
+                        <p class="card-text">Application Deadline: {{ job.application_dateline }}</p>
+
+                        
+                        {% if request.user.user_type == 'jobseeker' %}
+                        <a href="{% url 'applyNow' job.id %}" class="btn btn-primary">Apply Now</a>
+                        {% endif %}
+                            
+                       
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+{% endblock body %}

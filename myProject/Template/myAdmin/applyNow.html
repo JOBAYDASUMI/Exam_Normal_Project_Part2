@@ -1,0 +1,75 @@
+{% extends 'common/basePage.html' %}
+
+{% block body %}
+    <h1>You Are Goinig To Apply For:{{specific_job.job_title}} </h1>
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Job Application</h1>
+        <h2>You Ar Going To Apply For {{specific_job.job_title}}</h2>
+        
+        {% if already_exists %}
+            <h2>Already Applied</h2>
+        {% else %}
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="full_name">Full Name</label>
+                <input type="text" class="form-control" id="full_name" name="full_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="work_experience">Work Experience</label>
+                <input type="text" class="form-control" id="work_experience" name="work_experience" required>
+            </div>
+
+            <div class="form-group">
+                <label for="skills">Skills</label>
+                <input type="text" class="form-control" id="skills" name="skill" required>
+            </div>
+
+            <div class="form-group">
+                <label for="linkedin_url">LinkedIn URL</label>
+                <input type="url" class="form-control" id="linkedin_url" name="linkedin_url">
+            </div>
+
+            <div class="form-group">
+                <label for="expected_salary">Expected Salary</label>
+                <input type="number" class="form-control" id="expected_salary" name="expected_salary" required>
+            </div>
+
+            <div class="form-group">
+                <label for="resume">Upload Resume</label>
+                <input type="file" class="form-control-file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cover_letter">Cover Letter</label>
+                <textarea class="form-control" id="cover_letter" name="cover_letter" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
+        </form> 
+        {% endif %}
+            
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+   
+{% endblock body %}
